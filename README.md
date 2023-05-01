@@ -6,6 +6,8 @@ Java bindings to OpenCV library
 
 Currently supported platforms:
 - MacOS (Silicon)
+- Windows (x64)
+- Linux x64 (Ubuntu 22.04 tested)
 
 ## Installation
 
@@ -17,7 +19,7 @@ Usage with maven:
 <dependency>
     <groupId>com.computinglaboratory</groupId>
     <artifactId>opencv</artifactId>
-    <version>4.7.0</version>
+    <version>4.7.0-0</version>
 </dependency>
 ```
 

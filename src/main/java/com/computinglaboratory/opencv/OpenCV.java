@@ -54,7 +54,6 @@ public class OpenCV {
             try {
                 Files.delete(libraryPath);
             } catch (IOException e) {
-                throw new RuntimeException(e);
             }
         }));
     }

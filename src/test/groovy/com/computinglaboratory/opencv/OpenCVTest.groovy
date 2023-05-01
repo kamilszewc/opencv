@@ -8,8 +8,8 @@ class OpenCVTest extends Specification {
     def "Load OpenCV"() {
         when:
             OpenCV.loadLibrary()
-            def image = Imgcodecs.imread("/Users/kamil/Desktop/DSCF0626.JPG")
-            //def image = Imgcodecs.imread("C:\\Users\\Kamil\\Desktop\\IMG_2775.JPG");
+            //def image = Imgcodecs.imread("/Users/kamil/Desktop/DSCF0626.JPG")
+            def image = Imgcodecs.imread("C:\\Users\\Kamil\\Desktop\\photo.jpeg");
             //def image = Imgcodecs.imread("/home/kamil/Pulpit/screenshot.jpg");
         then:
             println image.width()
