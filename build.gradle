@@ -1,0 +1,111 @@
+plugins {
+    id 'java'
+    id 'groovy'
+    id 'java-library'
+    id 'maven-publish'
+    id 'signing'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+    id 'org.sonatype.gradle.plugins.scan' version '2.5.5'
+}
+
+group = 'com.computinglaboratory'
+version = '4.7.0'
+sourceCompatibility = '11'
+targetCompatibility = '11'
+
+repositories {
+    mavenCentral()
+}
+
+shadowJar {
+    archiveClassifier.set('')
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    testImplementation 'org.apache.groovy:groovy-all:4.0.11'
+    testImplementation 'org.spockframework:spock-core:2.4-M1-groovy-4.0'
+
+    // Apache commons
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+
+    implementation(files("${projectDir}/opencv-470-old.jar"))
+    testImplementation(files("${projectDir}/opencv-470-old.jar"))
+}
+
+test {
+    useJUnitPlatform()
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "OSSRH"
+            url = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+            try {
+                credentials {
+                    username = "$mavenCentralUser"
+                    password = "$mavenCentralPassword"
+                }
+            } catch (Exception ex) {
+                credentials {
+                    username = " "
+                    password = " "
+                }
+            }
+        }
+    }
+    publications {
+
+        mavenJava(MavenPublication) { publication ->
+            artifactId = 'opencv'
+            //from components.java
+            from project.shadow.component(publication)
+            pom {
+                name = 'OpenCV'
+                description = 'OpenCV'
+                url = 'https://github.com/kamilszewc/opencv'
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'kszewc'
+                        name = "Kamil Szewc"
+                        email = 'kamil.szewc@gmail.com'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git://github.com/kamilszewc/opencv.git'
+                    developerConnection = 'scm:git:https://github.com/kamilszewc/opencv.git'
+                    url = 'https://github.com/kamilszewc/opencv.git'
+                }
+            }
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.mavenJava
+    sign configurations.archives
+}
+
+ossIndexAudit {
+    allConfigurations = false
+    useCache = false
+    outputFormat = 'DEFAULT'
+}

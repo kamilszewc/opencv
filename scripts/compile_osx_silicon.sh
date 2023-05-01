@@ -1,0 +1,22 @@
+#!/bin/bash
+mkdir build
+cd build
+cmake \
+  -D OPENCV_FORCE_3RDPARTY_BUILD=ON \
+  -D BUILD_JAVA=ON \
+  -D BUILD_FAT_JAVA_LIB=ON \
+  -D OPENCV_ENABLE_NONFREE=ON \
+  -D BUILD_SHARED_LIBS=OFF \
+  -D BUILD_PERF_TESTS=OFF \
+  -D BUILD_TESTS=OFF \
+  -D BUILD_EXAMPLES=OFF \
+  -D BUILD_PACKAGE=OFF \
+  -D BUILD_opencv_python2=OFF \
+  -D BUILD_opencv_python3=OFF \
+  -D BUILD_opencv_apps=OFF \
+  -D BUILD_opencv_gapi=OFF \
+  -D CMAKE_BUILD_TYPE=RELEASE \
+  -D CMAKE_APPLE_SILICON_PROCESSOR=arm64 \
+  -D CMAKE_CXX_STANDARD=17 \
+  ..
+#make -j8
