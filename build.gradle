@@ -9,7 +9,7 @@ plugins {
 }
 
 group = 'com.computinglaboratory'
-version = '4.7.0'
+version = '4.7.0-0'
 sourceCompatibility = '11'
 targetCompatibility = '11'
 
@@ -31,8 +31,8 @@ dependencies {
     // Apache commons
     implementation 'org.apache.commons:commons-lang3:3.12.0'
 
-    implementation(files("${projectDir}/opencv-470-old.jar"))
-    testImplementation(files("${projectDir}/opencv-470-old.jar"))
+    implementation(files("${projectDir}/opencv-470.jar"))
+    testImplementation(files("${projectDir}/opencv-470.jar"))
 }
 
 test {
@@ -70,8 +70,8 @@ publishing {
 
         mavenJava(MavenPublication) { publication ->
             artifactId = 'opencv'
-            //from components.java
-            from project.shadow.component(publication)
+            from components.java
+            //from project.shadow.component(publication)
             pom {
                 name = 'OpenCV'
                 description = 'OpenCV'

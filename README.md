@@ -2,10 +2,12 @@
 
 ## Description
 
-Java bindings to OpenCV library
+Java (11+) bindings to OpenCV library
 
 Currently supported platforms:
 - MacOS (Silicon)
+- Windows (x64)
+- Linux x64 (Ubuntu 22.04 tested)
 
 ## Installation
 
