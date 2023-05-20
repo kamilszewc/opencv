@@ -9,7 +9,7 @@ plugins {
 }
 
 group = 'com.computinglaboratory'
-version = '4.7.0-0'
+version = '4.7.0-1'
 sourceCompatibility = '11'
 targetCompatibility = '11'
 
@@ -22,7 +22,7 @@ shadowJar {
 }
 
 dependencies {
-    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation platform('org.junit:junit-bom:5.9.2')
     testImplementation 'org.junit.jupiter:junit-jupiter'
 
     testImplementation 'org.apache.groovy:groovy-all:4.0.11'

@@ -14,6 +14,8 @@ public class OpenCV {
     public enum OS {MACOS, WINDOWS, LINUX};
     public enum Arch {X86, X64, ARM32, ARM64};
 
+    static public boolean isLoaded = false;
+
     static {
         try {
             loadLibrary();
@@ -24,38 +26,42 @@ public class OpenCV {
 
     public static void loadLibrary() throws IOException, SystemNotSupportedException {
 
-        // Create temporary folder
-        final Path tempDirectory = Files.createTempDirectory("opencv-");
+        if (!isLoaded) {
 
-        // Define the library path
-        final Path libraryPath = tempDirectory.resolve("libopencv_java470.dylib");
+            // Create temporary folder
+            final Path tempDirectory = Files.createTempDirectory("opencv-");
 
-        // Detect os and arch
-        var os = detectOS();
-        var arch = detectArchitecture();
+            // Define the library path
+            final Path libraryPath = tempDirectory.resolve("libopencv_java470.dylib");
 
-        // Choose dynamic library depending on architecture
-        String dynPath = null;
-        if (os == OS.MACOS && arch == Arch.ARM64) dynPath = "/opencv/osx/silicon/libopencv_java470.dylib";
-        else if (os == OS.WINDOWS && arch == Arch.X64) dynPath = "/opencv/win/x64/opencv_java470.dll";
-        else if (os == OS.WINDOWS && arch == Arch.X86) dynPath = "/opencv/win/x86/opencv_java470.dll";
-        else if (os == OS.LINUX && arch == Arch.X64) dynPath = "/opencv/linux/amd64/libopencv_java470.so";
-        else throw new SystemNotSupportedException();
+            // Detect os and arch
+            var os = detectOS();
+            var arch = detectArchitecture();
 
-        // Copy the library to the temporary folder
-        var inputStream = OpenCV.class.getResourceAsStream(dynPath);
-        Files.copy(inputStream, libraryPath);
+            // Choose dynamic library depending on architecture
+            String dynPath = null;
+            if (os == OS.MACOS && arch == Arch.ARM64) dynPath = "/opencv/osx/silicon/libopencv_java470.dylib";
+            else if (os == OS.WINDOWS && arch == Arch.X64) dynPath = "/opencv/win/x64/opencv_java470.dll";
+            else if (os == OS.WINDOWS && arch == Arch.X86) dynPath = "/opencv/win/x86/opencv_java470.dll";
+            else if (os == OS.LINUX && arch == Arch.X64) dynPath = "/opencv/linux/amd64/libopencv_java470.so";
+            else throw new SystemNotSupportedException();
 
-        // Loading the native library
-        System.load(libraryPath.toString());
+            // Copy the library to the temporary folder
+            var inputStream = OpenCV.class.getResourceAsStream(dynPath);
+            Files.copy(inputStream, libraryPath);
 
-        // Adding shutdown hook to remove library after exit
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            try {
-                Files.delete(libraryPath);
-            } catch (IOException e) {
-            }
-        }));
+            // Loading the native library
+            System.load(libraryPath.toString());
+            isLoaded = true;
+
+            // Adding shutdown hook to remove library after exit
+            Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+                try {
+                    Files.delete(libraryPath);
+                } catch (IOException e) {
+                }
+            }));
+        }
     }
 
     public static OS detectOS() {
