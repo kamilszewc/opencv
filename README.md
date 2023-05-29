@@ -19,14 +19,14 @@ Usage with maven:
 <dependency>
     <groupId>com.computinglaboratory</groupId>
     <artifactId>opencv</artifactId>
-    <version>4.7.0-0</version>
+    <version>4.7.0-1</version>
 </dependency>
 ```
 
 Usage with gradle:
 
 ```groovy
-implementation 'com.computinglaboratory:opencv:4.7.0-0'
+implementation 'com.computinglaboratory:opencv:4.7.0-1'
 ```
 
 ## Usage
