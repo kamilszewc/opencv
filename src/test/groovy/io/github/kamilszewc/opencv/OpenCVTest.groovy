@@ -1,4 +1,5 @@
-package com.computinglaboratory.opencv
+package io.github.kamilszewc.opencv
+
 
 import org.opencv.imgcodecs.Imgcodecs
 import spock.lang.Specification
@@ -25,5 +26,13 @@ class OpenCVTest extends Specification {
             def arch = OpenCV.detectArchitecture()
         then:
             arch == OpenCV.Arch.ARM64
+    }
+
+    def "Setting CascadeClassifier"() {
+        when:
+        OpenCV.loadLibrary()
+        def image = org.opencv.objdetect.FaceRecognizerSF
+        then:
+        println image.width()
     }
 }

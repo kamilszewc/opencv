@@ -1,8 +1,8 @@
-package com.computinglaboratory.opencv;
+package io.github.kamilszewc.opencv;
 
-import com.computinglaboratory.opencv.exception.SystemNotSupportedException;
-import com.computinglaboratory.opencv.exception.UnknownCpuArchitectureException;
-import com.computinglaboratory.opencv.exception.UnknownOperatingSystemException;
+import io.github.kamilszewc.opencv.exception.SystemNotSupportedException;
+import io.github.kamilszewc.opencv.exception.UnknownCpuArchitectureException;
+import io.github.kamilszewc.opencv.exception.UnknownOperatingSystemException;
 import org.apache.commons.lang3.SystemUtils;
 
 import java.io.IOException;

@@ -17,21 +17,21 @@ Usage with maven:
 
 ```xml
 <dependency>
-    <groupId>com.computinglaboratory</groupId>
+    <groupId>io.github.kamilszewc</groupId>
     <artifactId>opencv</artifactId>
-    <version>4.7.0-1</version>
+    <version>4.7.0-2</version>
 </dependency>
 ```
 
 Usage with gradle:
 
 ```groovy
-implementation 'com.computinglaboratory:opencv:4.7.0-1'
+implementation 'io.github.kamilszewc:opencv:4.7.0-2'
 ```
 
 ## Usage
 
-Before using the library, you need to call `com.computinglaboratory.opencv.OpenCV.loadLibrary()` static function.
+Before using the library, you need to call `io.github.kamilszewc.opencv.OpenCV.loadLibrary()` static function.
 Alternatively, you can simply call any other function from OpenCV library.
 The reason is that, during that stage, the operating system and cpu architectures are detected
 and the right native dynamic libraries of OpenCV are loaded.

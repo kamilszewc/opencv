@@ -1,4 +1,4 @@
-package com.computinglaboratory.opencv.exception;
+package io.github.kamilszewc.opencv.exception;
 
 public class UnknownOperatingSystemException extends RuntimeException {
 

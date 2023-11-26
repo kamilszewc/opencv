@@ -5,13 +5,16 @@ plugins {
     id 'maven-publish'
     id 'signing'
     id 'com.github.johnrengelman.shadow' version '8.1.1'
-    id 'org.sonatype.gradle.plugins.scan' version '2.5.5'
+    id 'org.sonatype.gradle.plugins.scan' version '2.6.1'
 }
 
-group = 'com.computinglaboratory'
-version = '4.7.0-1'
-sourceCompatibility = '11'
-targetCompatibility = '11'
+group = 'io.github.kamilszewc'
+version = '4.7.0-2'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
 
 repositories {
     mavenCentral()
@@ -25,7 +28,7 @@ dependencies {
     testImplementation platform('org.junit:junit-bom:5.9.2')
     testImplementation 'org.junit.jupiter:junit-jupiter'
 
-    testImplementation 'org.apache.groovy:groovy-all:4.0.11'
+    testImplementation 'org.apache.groovy:groovy-all:4.0.15'
     testImplementation 'org.spockframework:spock-core:2.4-M1-groovy-4.0'
 
     // Apache commons
@@ -76,6 +79,14 @@ publishing {
                 name = 'OpenCV'
                 description = 'OpenCV'
                 url = 'https://github.com/kamilszewc/opencv'
+//                distributionManagement {
+//                    relocation {
+//                        groupId = 'io.github.kamilszewc'
+//                        artifactId = 'opencv'
+//                        version = '4.7.0-2'
+//                        message = 'Project moved to io.github.kamilszewc:opencv'
+//                    }
+//                }
                 licenses {
                     license {
                         name = 'The Apache License, Version 2.0'
