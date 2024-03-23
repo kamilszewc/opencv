@@ -5,11 +5,11 @@ plugins {
     id 'maven-publish'
     id 'signing'
     id 'com.github.johnrengelman.shadow' version '8.1.1'
-    id 'org.sonatype.gradle.plugins.scan' version '2.6.1'
+    id 'org.sonatype.gradle.plugins.scan' version '2.7.0'
 }
 
 group = 'io.github.kamilszewc'
-version = '4.7.0-2'
+version = '4.7.0-3'
 
 java {
     sourceCompatibility = JavaVersion.VERSION_11
@@ -28,11 +28,11 @@ dependencies {
     testImplementation platform('org.junit:junit-bom:5.9.2')
     testImplementation 'org.junit.jupiter:junit-jupiter'
 
-    testImplementation 'org.apache.groovy:groovy-all:4.0.15'
-    testImplementation 'org.spockframework:spock-core:2.4-M1-groovy-4.0'
+    testImplementation 'org.apache.groovy:groovy-all:4.0.20'
+    testImplementation 'org.spockframework:spock-core:2.4-M2-groovy-4.0'
 
     // Apache commons
-    implementation 'org.apache.commons:commons-lang3:3.12.0'
+    implementation 'org.apache.commons:commons-lang3:3.14.0'
 
     implementation(files("${projectDir}/opencv-470.jar"))
     testImplementation(files("${projectDir}/opencv-470.jar"))
@@ -111,6 +111,7 @@ publishing {
 }
 
 signing {
+    useGpgCmd()
     sign publishing.publications.mavenJava
     sign configurations.archives
 }
