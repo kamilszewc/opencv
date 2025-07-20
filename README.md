@@ -1,6 +1,6 @@
 # Java OpenCV (INACTIVE)
 
-**Development on the project stopped in 2015**
+**Development on the project stopped in 2024**
 
 ## Description
 
