@@ -1,4 +1,6 @@
-# Java OpenCV
+# Java OpenCV (INACTIVE)
+
+**Development on the project stopped in 2015**
 
 ## Description
 
@@ -7,7 +9,7 @@ Java (11+) bindings to OpenCV library
 Currently supported platforms:
 - MacOS (Silicon)
 - Windows (x64)
-- Linux x64 (Ubuntu 22.04 tested)
+- Linux x64 (Debian 12, Ubuntu 22.04 tested)
 
 ## Installation
 
